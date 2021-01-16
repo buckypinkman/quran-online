@@ -51,7 +51,7 @@
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
 
-          <audio controls class="mb-2" controlsList="nodownload">
+          <audio controls class="mb-2 ml-2" controlsList="nodownload">
             <source :src="res.audio.primary">
           </audio>
         </div>
