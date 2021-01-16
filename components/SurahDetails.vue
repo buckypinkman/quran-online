@@ -48,16 +48,19 @@
       >
         <div class="wrap flex">
           <p
-            class="text-gray-600 bg-white text-sm md:text-base p-2 border border-indigo-300 shadow-lg rounded-md w-max"
+            class="text-gray-600 bg-white text-sm md:text-base p-2 border border-indigo-300 shadow-lg rounded-md w-max h-10"
           >
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
+
+          <audio controls class="mb-2">
+            <source :src="res.audio.primary">
+          </audio>
         </div>
 
         <div
-          class="flex flex-row-reverse text-3xl arabic mb-5 leading-loose cursor-pointer"
+          class="flex flex-row-reverse text-3xl arabic mb-5 leading-loose"
           align="right"
-          @click="playAudio(res.audio.primary)"
         >
           {{ res.text.arab }}
         </div>
@@ -102,10 +105,12 @@ export default {
     };
   },
   methods: {
-    playAudio(url) {
-      const audio = new Audio(url)
-      audio.play()
-    },
+    // playAudio(url) {
+    //   const audio = new Audio(url)
+    //   if(audio.currentTime == 0) {
+    //     audio.play()
+    //   }
+    // },
     nextPage() {
       this.$router.push({
         name: "surah-number",
