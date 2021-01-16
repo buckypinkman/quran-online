@@ -32,8 +32,6 @@
       </a>
     </div>
 
-    <the-info-bar />
-
     <div class="ayat-list mt-16">
       <p
         class="arabic text-center text-4xl"
@@ -48,7 +46,7 @@
       >
         <div class="wrap flex">
           <p
-            class="text-gray-600 bg-white text-sm md:text-base p-2 border border-indigo-300 shadow-lg rounded-md w-max h-10"
+            class="text-gray-600 bg-white text-sm md:text-base p-2 border border-indigo-300 shadow-lg rounded-md w-max h-10 mt-2"
           >
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
