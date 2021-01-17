@@ -146,5 +146,8 @@ export default {
 audio {
   background-color: #f1f3f4
 }
+audio:focus {
+  outline: none;
+}
 </style>
 
