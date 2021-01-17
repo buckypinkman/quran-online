@@ -60,6 +60,7 @@
             controls="controls"
             controlslist="nodownload"
             class="mb-2 ml-2 shadow-md"
+            preload="none"
           >
             <source :src="res.audio.primary" />
           </audio>
