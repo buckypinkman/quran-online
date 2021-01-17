@@ -59,7 +59,7 @@
           <audio
             controls="controls"
             controlslist="nodownload"
-            class="mb-2 ml-2 shadow-md rounded-md"
+            class="mb-3 ml-2 shadow-md rounded-md"
             preload="none"
           >
             <source :src="res.audio.primary" />
