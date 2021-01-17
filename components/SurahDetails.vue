@@ -1,8 +1,6 @@
 <template>
   <div class="surah-detail" v-if="details">
-    <div
-      class="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden md:max-w-2xl mt-6 p-6"
-    >
+    <base-header-card>
       <div class="title sm:flex">
         <h1 class="font-semibold text-xl">
           {{ details.name.transliteration.id }} -
@@ -30,7 +28,16 @@
         <span v-if="readMore" class="font-semibold">Tutup</span>
         <span v-else class="font-semibold">Baca selengkapnya</span>
       </a>
-    </div>
+    </base-header-card>
+
+    <base-header-card>
+      <input
+        type="search"
+        class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 rounded transition duration-200"
+        placeholder="Cari ayat.. cth: 200"
+        v-model="query"
+      />
+    </base-header-card>
 
     <div class="ayat-list mt-16">
       <p
@@ -41,7 +48,7 @@
       </p>
       <div
         class="ayat md:px-4 px-2 pt-5 pb-10 border-b border-indigo-200"
-        v-for="res in details.verses"
+        v-for="res in filteredAyah"
         :key="res.number.inSurah"
       >
         <div class="wrap flex">
@@ -52,7 +59,7 @@
           </p>
 
           <audio controls class="mb-2 ml-2" controlsList="nodownload">
-            <source :src="res.audio.primary">
+            <source :src="res.audio.primary" />
           </audio>
         </div>
 
@@ -90,6 +97,7 @@ export default {
   props: ["details"],
   data() {
     return {
+      query: "",
       readMore: false,
     };
   },
@@ -122,6 +130,14 @@ export default {
         params: { number: this.details.number - 1 },
       });
       window.scrollTo(0, 0);
+    },
+  },
+  computed: {
+    filteredAyah() {
+      return this.details.verses.filter((ayah) => {
+        const numberString = ayah.number.inSurah.toString()
+        return numberString.includes(this.query)  
+      });
     },
   },
 };
