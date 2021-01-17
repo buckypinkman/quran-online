@@ -23,10 +23,9 @@
       <a
         @click.prevent="readMore = !readMore"
         href="#"
-        class="flex flex-row-reverse mt-2 md:mt-0 hover:underline"
+        class="flex flex-row-reverse mt-2 md:mt-0 hover:underline font-semibold"
       >
-        <span v-if="readMore" class="font-semibold">Tutup</span>
-        <span v-else class="font-semibold">Baca selengkapnya</span>
+        {{ readMore ? 'Tutup' : 'Baca selengkapnya' }}
       </a>
     </base-header-card>
 
@@ -113,9 +112,7 @@ export default {
   methods: {
     // playAudio(url) {
     //   const audio = new Audio(url)
-    //   if(audio.currentTime == 0) {
-    //     audio.play()
-    //   }
+    //   audio.play()
     // },
     nextPage() {
       this.$router.push({
@@ -135,8 +132,7 @@ export default {
   computed: {
     filteredAyah() {
       return this.details.verses.filter((ayah) => {
-        const numberString = ayah.number.inSurah.toString()
-        return numberString.includes(this.query)  
+        return ayah.number.inSurah >= this.query  
       });
     },
   },
