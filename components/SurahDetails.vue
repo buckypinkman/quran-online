@@ -25,7 +25,7 @@
         href="#"
         class="flex flex-row-reverse mt-2 md:mt-0 hover:underline font-semibold"
       >
-        {{ readMore ? 'Tutup' : 'Baca selengkapnya' }}
+        {{ readMore ? "Tutup" : "Baca selengkapnya" }}
       </a>
     </base-header-card>
 
@@ -56,8 +56,11 @@
           >
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
-
-          <audio controls class="mb-2 ml-2" controlsList="nodownload">
+          <audio
+            controls="controls"
+            controlslist="nodownload"
+            class="mb-2 ml-2 shadow-md"
+          >
             <source :src="res.audio.primary" />
           </audio>
         </div>
@@ -111,8 +114,8 @@ export default {
   },
   methods: {
     // playAudio(url) {
-    //   const audio = new Audio(url)
-    //   audio.play()
+    //   const audio = new Audio(url);
+    //   audio.play();
     // },
     nextPage() {
       this.$router.push({
@@ -132,10 +135,15 @@ export default {
   computed: {
     filteredAyah() {
       return this.details.verses.filter((ayah) => {
-        return ayah.number.inSurah >= this.query  
+        return ayah.number.inSurah >= this.query;
       });
     },
   },
 };
 </script>
+<style scoped>
+audio {
+  background-color: #f1f3f4
+}
+</style>
 
