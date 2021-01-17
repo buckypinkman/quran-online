@@ -1,15 +1,13 @@
 <template>
   <div class="quran-app">
-    <div
-      class="max-w-md mx-auto bg-white rounded-md shadow-lg overflow-hidden md:max-w-2xl mt-6 p-5"
-    >
+    <base-header-card>
       <input
         type="search"
         class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 rounded transition duration-200"
         placeholder="Cari Surah.. cth: ar-rahman"
         v-model="keyword"
       />
-    </div>
+    </base-header-card>
     <Skeleton v-if="$fetchState.pending" class="mx-auto"/>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
       <surah-list

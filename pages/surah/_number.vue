@@ -7,7 +7,7 @@
 export default {
   data() {
     return {
-      details: ""
+      details: []
     }
   },
   async fetch() {
