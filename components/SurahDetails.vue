@@ -122,15 +122,13 @@ export default {
       this.$router.push({
         name: "surah-number",
         params: { number: this.details.number + 1 },
-      });
-      window.scrollTo(0, 0);
+      });  
     },
     prevPage() {
       this.$router.push({
         name: "surah-number",
         params: { number: this.details.number - 1 },
-      });
-      window.scrollTo(0, 0);
+      }); 
     },
   },
   computed: {
