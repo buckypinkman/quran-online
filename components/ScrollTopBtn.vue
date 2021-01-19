@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 div {
-  width: 3.5rem;
-  height: 3.8rem
+  width: 3.4rem;
+  height: 3.7rem
 }
 </style>
