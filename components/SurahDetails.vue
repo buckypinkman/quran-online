@@ -1,5 +1,5 @@
 <template>
-  <div class="surah-detail text-gray-300" v-if="details">
+  <div class="surah-detail dark:text-gray-300" v-if="details">
     <base-header-card>
       <div class="title sm:flex">
         <h1 class="font-semibold text-xl">
