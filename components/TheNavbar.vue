@@ -9,7 +9,7 @@
       </div>
       <select
         v-model="$colorMode.preference"
-        class="border w-24 h-8 dark:bg-gray-700 rounded pl-2 dark:border-indigo-400 order-last focus:outline-none"
+        class="border w-24 bg-transparent h-8 dark:bg-gray-700 rounded pl-2 dark:border-indigo-400 order-last focus:outline-none"
       >
         <option value="light">Light</option>
         <option value="dark">Dark</option>
