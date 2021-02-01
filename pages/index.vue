@@ -3,7 +3,7 @@
     <base-header-card>
       <input
         type="search"
-        class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 rounded transition duration-200"
+        class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 dark:bg-gray-700 rounded transition duration-200 dark:text-white dark:border-indigo-400"
         placeholder="Cari Surah.. cth: ar-rahman"
         v-model="keyword"
       />

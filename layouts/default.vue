@@ -17,6 +17,10 @@ body {
   background-color: rgb(248, 251, 255);
 }
 
+.dark-mode body {
+  background-color: #1A202C;
+}
+
 @font-face {
   font-family: QuranFont;
   src: url("../assets/fonts/me_quran_volt_newmet.ttf");

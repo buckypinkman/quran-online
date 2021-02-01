@@ -1,5 +1,5 @@
 <template>
-  <div class="surah-detail" v-if="details">
+  <div class="surah-detail text-gray-300" v-if="details">
     <base-header-card>
       <div class="title sm:flex">
         <h1 class="font-semibold text-xl">
@@ -32,7 +32,7 @@
     <base-header-card>
       <input
         type="search"
-        class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 rounded transition duration-200"
+        class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 rounded transition duration-200 dark:border-indigo-400 dark:bg-gray-700"
         placeholder="Cari ayat.. cth: 200"
         v-model="query"
       />
@@ -52,7 +52,7 @@
       >
         <div class="wrap flex">
           <p
-            class="text-gray-600 bg-white text-sm md:text-base p-2 border border-indigo-300 shadow-lg rounded-md w-max h-10 mt-2"
+            class="text-gray-600 bg-white text-sm md:text-base p-2 border border-indigo-300 shadow-lg rounded-md w-max h-10 mt-2 dark:bg-gray-800 dark:border-indigo-400 dark:text-gray-300"
           >
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
@@ -142,10 +142,19 @@ export default {
 </script>
 <style scoped>
 audio {
-  background-color: #f1f3f4
+  border: none;
 }
 audio:focus {
   outline: none;
+}
+
+.dark-mode audio {
+  @apply bg-gray-500
+}
+
+.dark-mode audio::-webkit-media-controls-play-button,
+.dark-mode audio::-webkit-media-controls-panel {
+  @apply bg-gray-500
 }
 </style>
 
