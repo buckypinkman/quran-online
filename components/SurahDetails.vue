@@ -142,6 +142,7 @@ export default {
 </script>
 <style scoped>
 audio {
+  background-color: rgb(241, 243, 244);
   border: none;
 }
 audio:focus {
