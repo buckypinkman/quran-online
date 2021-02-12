@@ -61,6 +61,7 @@
             controlslist="nodownload"
             class="mb-5 ml-2 shadow-md rounded-md"
             preload="none"
+            loop
           >
             <source :src="res.audio.primary" />
           </audio>
