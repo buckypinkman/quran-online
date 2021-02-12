@@ -24,6 +24,7 @@ body {
 @font-face {
   font-family: QuranFont;
   src: url("../assets/fonts/me_quran_volt_newmet.ttf");
+  font-display: swap;
 }
 
 .arabic {
