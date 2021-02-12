@@ -1,5 +1,5 @@
 <template>
-  <div class="surah-detail dark:text-gray-300" v-if="details">
+  <div class="surah-detail dark:text-gray-400" v-if="details">
     <base-header-card>
       <div class="title sm:flex">
         <h1 class="font-semibold text-xl">
@@ -40,13 +40,13 @@
 
     <div class="ayat-list mt-16">
       <p
-        class="arabic text-center text-4xl"
+        class="arabic text-center text-4xl mb-5"
         v-if="details.preBismillah != null"
       >
         {{ details.preBismillah.text.arab }}
       </p>
       <div
-        class="ayat md:px-4 px-2 pt-5 pb-10 border-b border-indigo-200"
+        class="ayat md:px-4 px-2 pt-6 pb-10 border-b border-indigo-200 dark:border-gray-800"
         v-for="res in filteredAyah"
         :key="res.number.inSurah"
       >
@@ -59,7 +59,7 @@
           <audio
             controls="controls"
             controlslist="nodownload"
-            class="mb-3 ml-2 shadow-md rounded-md"
+            class="mb-5 ml-2 shadow-md rounded-md"
             preload="none"
           >
             <source :src="res.audio.primary" />
