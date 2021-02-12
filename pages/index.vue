@@ -8,7 +8,7 @@
         v-model="keyword"
       />
     </base-header-card>
-    <Skeleton v-if="$fetchState.pending" class="mx-auto"/>
+    <Skeleton v-if="isLoading" class="mx-auto"/>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
       <surah-list
         v-for="surah in filteredSurah"
@@ -21,6 +21,7 @@
         :revelation="surah.revelation.id"
       ></surah-list>
     </div>
+    <the-footer />
   </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
     return {
       surah_list: [],
       keyword: "",
+      isLoading: false
     };
   },
   computed: {
@@ -42,14 +44,17 @@ export default {
     },
   },
   async fetch() {
+    this.isLoading = true
     try {
       const data = await fetch("https://api.quran.sutanlab.id/surah");
       const res = await data.json();
       this.surah_list = res.data;
 
-      console.log(this.surah_list);
+      this.isLoading = false
+
+      // console.log(this.surah_list);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   },
 };
