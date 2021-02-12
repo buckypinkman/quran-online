@@ -77,20 +77,20 @@
     </div>
 
     <div class="page-nav flex pl-2">
-      <p
+      <nuxt-link
         class="font-semibold mt-5 cursor-pointer w-max mr-4 hover:underline"
-        @click="prevPage"
+        :to="`${details.number - 1}`"
         v-if="details.number > 1"
       >
         Sebelumnya
-      </p>
-      <p
+      </nuxt-link>
+      <nuxt-link
         class="font-semibold mt-5 cursor-pointer w-max hover:underline"
-        @click="nextPage"
+        :to="`${details.number + 1}`"
         v-if="details.number < 114"
       >
         Surat selanjutnya
-      </p>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -112,24 +112,6 @@ export default {
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
     };
-  },
-  methods: {
-    // playAudio(url) {
-    //   const audio = new Audio(url);
-    //   audio.play();
-    // },
-    nextPage() {
-      this.$router.push({
-        name: "surah-number",
-        params: { number: this.details.number + 1 },
-      });  
-    },
-    prevPage() {
-      this.$router.push({
-        name: "surah-number",
-        params: { number: this.details.number - 1 },
-      }); 
-    },
   },
   computed: {
     filteredAyah() {
