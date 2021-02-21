@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white shadow-xl mr-4 pt-4 rounded-md fixed bottom-0 right-0 text-white mb-4 cursor-pointer bg-indigo-400 hover:bg-indigo-500 transition duration-200 text-center dark:bg-indigo-500"
+    class="bg-white shadow-xl mr-4 pt-4 rounded-md fixed bottom-0 right-0 text-white md:mb-3 mb-20 cursor-pointer bg-indigo-400 hover:bg-indigo-500 transition duration-200 text-center dark:bg-indigo-500"
     @click.prevent="scrollTop"
   >
     <img src="../../assets/icons/up-arrow.svg" alt="arrow up" class="m-auto">
