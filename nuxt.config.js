@@ -32,6 +32,7 @@ export default {
     "@nuxtjs/color-mode",
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/pwa',
   ],
 
   tailwindcss: {
@@ -41,6 +42,15 @@ export default {
   
   purgeCSS: {
     whitelist: ["dark-mode"]
+  },
+
+  pwa: {
+    icon: {
+      source: 'static/icon.png'
+    },
+    manifest: {
+      name: "Qur'anKu",
+    }
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
