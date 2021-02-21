@@ -38,7 +38,13 @@
       />
     </base-header-card>
 
-    <div class="ayat-list mt-16">
+
+    <div class="ulang-ayat-check mt-10 max-w-md mx-auto md:max-w-2xl">
+      <p @click="enableLoop" v-if="!isLooping" class="text-xl font-semibold cursor-pointer">Ulang Audio</p>
+      <p @click="disableLoop" class="text-xl font-semibold" v-else>Jangan Ulang Audio</p>
+    </div>
+
+    <div class="ayat-list mt-6">
       <p
         class="arabic text-center text-4xl mb-5"
         v-if="details.preBismillah != null"
@@ -57,14 +63,16 @@
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
           <audio
-            controls="controls"
-            controlslist="nodownload"
-            class="mb-5 ml-2 shadow-md rounded-md"
-            preload="none"
-            loop
-          >
-            <source :src="res.audio.primary" />
-          </audio>
+              controls="controls"
+              controlslist="nodownload"
+              class="mb-5 ml-2 shadow-md rounded-md"
+              preload="none"
+              ref="myAudio"
+              id="murottal"
+            >
+              <source :src="res.audio.primary" />
+            </audio>
+          <img src="../../assets/icons/bookmark-indigo.png" alt="bookmark ayat" class="h-10 ml-auto cursor-pointer">
         </div>
 
         <div
@@ -103,6 +111,8 @@ export default {
     return {
       query: "",
       readMore: false,
+      isLooping: false,
+      last_read_ayah: [],
     };
   },
   head() {
@@ -114,12 +124,33 @@ export default {
       ],
     };
   },
+  methods: {
+    addAyah(ayah, surahNumber) {
+      this.last_read_ayah.push({ayah, surahNumber});
+      this.saveAyah();
+    },
+    saveAyah() {
+      const parsed = JSON.stringify(this.last_read_ayah);
+      localStorage.setItem("ayah", parsed);
+    },
+    enableLoop() {
+      this.myAudio.loop = true
+      this.isLooping = true
+    },
+    disableLoop() {
+      this.myAudio.loop = false
+      this.isLooping = false
+    }
+  },
   computed: {
     filteredAyah() {
       return this.details.verses.filter((ayah) => {
         return ayah.number.inSurah >= this.query;
       });
     },
+    myAudio() {
+      return document.getElementById('murottal')
+    }
   },
 };
 </script>
@@ -133,12 +164,12 @@ audio:focus {
 }
 
 .dark-mode audio {
-  @apply bg-gray-500
+  @apply bg-gray-500;
 }
 
 .dark-mode audio::-webkit-media-controls-play-button,
 .dark-mode audio::-webkit-media-controls-panel {
-  @apply bg-gray-500
+  @apply bg-gray-500;
 }
 </style>
 
