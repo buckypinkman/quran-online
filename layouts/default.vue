@@ -1,9 +1,10 @@
 <template>
   <div>
     <the-navbar />
-    <div class="container mx-auto md:px-6 px-3 mb-10">
+    <div class="container mx-auto md:px-6 px-3 mb-24">
       <Nuxt />
       <scroll-top-btn />
+      <the-bottom-nav />
     </div>
   </div>
 </template>
@@ -18,7 +19,7 @@ body {
 }
 
 .dark-mode body {
-  background-color: #1A202C;
+  background-color: #1a202c;
 }
 
 @font-face {
