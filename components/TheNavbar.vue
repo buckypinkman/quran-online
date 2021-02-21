@@ -6,7 +6,6 @@
       <div class="links pt-1">
         <nuxt-link to="/" class="flex">
           <h2 class="font-semibold text-xl md:mr-6 mr-4">Al-Qur'an Online</h2>
-          <p class="mt-1">Home</p>
         </nuxt-link>
       </div>
       <select
