@@ -100,6 +100,7 @@
       >
         Surat selanjutnya
       </nuxt-link>
+      <success-modal :showModal="showModal"></success-modal>
     </div>
   </div>
 </template>
@@ -113,6 +114,7 @@ export default {
       readMore: false,
       isLooping: false,
       last_read_ayah: [],
+      showModal: false
     };
   },
   head() {
@@ -135,6 +137,11 @@ export default {
     addAyah(ayah, surahNumber) {
       this.last_read_ayah.push({"ayah": ayah, "surahNumber": surahNumber});
       this.saveAyah();
+      this.toggleModal()
+    },
+    toggleModal() {
+      this.showModal = true
+      setTimeout(() => this.showModal = false, 1800)
     },
     saveAyah() {
       const parsed = JSON.stringify(this.last_read_ayah);
