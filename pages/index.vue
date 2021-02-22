@@ -30,7 +30,6 @@ export default {
     return {
       surah_list: [],
       keyword: "",
-      isLoading: true
     };
   },
   computed: {
@@ -42,17 +41,13 @@ export default {
       });
     },
   },
-  beforeCreate() {
-    this.isLoading = true
-  },
   async fetch() {
     try {
       const data = await fetch("https://api.quran.sutanlab.id/surah");
       const res = await data.json();
-      this.surah_list = res.data
-      this.isLoading = false
+      this.surah_list = res.data;
 
-      console.log(this.surah_list);
+      // console.log(this.surah_list);
     } catch (error) {
       // console.log(error);
     }
