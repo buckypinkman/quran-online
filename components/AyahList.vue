@@ -1,5 +1,5 @@
 <template>
-  <div class="ayat-list md:mt-6 text-gray-400">
+  <div class="ayat-list md:mt-6 dark:text-gray-400">
     <div
       class="ayat md:px-4 px-2 pt-6 pb-10 border-b border-indigo-200 dark:border-gray-800"
     >
