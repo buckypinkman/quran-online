@@ -128,7 +128,7 @@ export default {
     let lastAyahQuery = this.$route.query.ayah_last
     if(lastAyahQuery) {
       this.query = lastAyahQuery
-      window.scrollBy(0, 200)
+      window.scrollBy(200, 0)
     }
   },
   methods: {
