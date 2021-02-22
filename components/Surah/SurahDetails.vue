@@ -41,7 +41,7 @@
 
     <div class="ulang-ayat-check mt-10 max-w-md mx-auto md:max-w-2xl">
       <p @click="enableLoop" v-if="!isLooping" class="text-xl font-semibold cursor-pointer">Ulang Audio</p>
-      <p @click="disableLoop" class="text-xl font-semibold" v-else>Jangan Ulang Audio</p>
+      <p @click="disableLoop" class="text-xl font-semibold cursor-pointer" v-else>Jangan Ulang Audio</p>
     </div>
 
     <div class="ayat-list mt-6">
@@ -72,7 +72,7 @@
             >
               <source :src="res.audio.primary" />
             </audio>
-          <img src="../../assets/icons/bookmark-indigo.png" alt="bookmark ayat" class="h-10 ml-auto cursor-pointer">
+          <img src="../../assets/icons/bookmark-indigo.png" alt="bookmark ayat" class="h-10 ml-auto cursor-pointer" @click="addAyah(res.number.inSurah, details.number)">
         </div>
 
         <div
@@ -124,9 +124,15 @@ export default {
       ],
     };
   },
+  created() {
+    let lastAyahQuery = this.$route.query.ayah_last
+    if(lastAyahQuery) {
+      this.query = lastAyahQuery
+    }
+  },
   methods: {
     addAyah(ayah, surahNumber) {
-      this.last_read_ayah.push({ayah, surahNumber});
+      this.last_read_ayah.push({"ayah": ayah, "surahNumber": surahNumber});
       this.saveAyah();
     },
     saveAyah() {
@@ -154,7 +160,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 audio {
   background-color: rgb(241, 243, 244);
   border: none;
