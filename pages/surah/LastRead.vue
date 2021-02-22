@@ -21,18 +21,16 @@ export default {
   },
   created() {
     this.last_read_ayah = JSON.parse(localStorage.getItem("ayah"));
-    console.log(this.ayah_list);
   },
   fetch() {
     this.last_read_ayah.forEach(async (res) => {
       try {
         const resAyah = await fetch(`https://api.quran.sutanlab.id/surah/${res.surahNumber}/${res.ayah}`);
         const data = await resAyah.json();
-        console.log(data);
 
         this.ayah_list = data.data;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     });
   },
