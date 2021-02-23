@@ -38,10 +38,21 @@
       />
     </base-header-card>
 
-
     <div class="ulang-ayat-check mt-10 max-w-md mx-auto md:max-w-2xl">
-      <p @click="enableLoop" v-if="!isLooping" class="text-xl font-semibold cursor-pointer">Ulang Audio</p>
-      <p @click="disableLoop" class="text-xl font-semibold cursor-pointer" v-else>Jangan Ulang Audio</p>
+      <p
+        @click="enableLoop"
+        v-if="!isLooping"
+        class="text-xl font-semibold cursor-pointer"
+      >
+        Ulang Audio
+      </p>
+      <p
+        @click="disableLoop"
+        class="text-xl font-semibold cursor-pointer"
+        v-else
+      >
+        Jangan Ulang Audio
+      </p>
     </div>
 
     <div class="ayat-list mt-6">
@@ -62,17 +73,24 @@
           >
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
-          <audio
+          <client-only>
+            <audio
               controls="controls"
               controlslist="nodownload"
               class="mb-5 ml-2 shadow-md rounded-md"
               preload="none"
-              ref="myAudio"
               id="murottal"
+              @play="preventDoublePlay($event)"
             >
               <source :src="res.audio.primary" />
             </audio>
-          <img src="../../assets/icons/bookmark-indigo.png" alt="bookmark ayat" class="h-10 ml-auto cursor-pointer" @click="addAyah(res.number.inSurah, details.number)">
+          </client-only>
+          <img
+            src="../../assets/icons/bookmark-indigo.png"
+            alt="bookmark ayat"
+            class="h-10 ml-auto cursor-pointer"
+            @click="addAyah(res.number.inSurah, details.number)"
+          />
         </div>
 
         <div
@@ -100,7 +118,9 @@
       >
         Surat selanjutnya
       </nuxt-link>
-      <success-modal :showModal="showModal"></success-modal>
+      <success-modal v-if="showModal"
+        >Berhasil menambahkan sebagai ayat terakhir dibaca</success-modal
+      >
     </div>
   </div>
 </template>
@@ -114,7 +134,7 @@ export default {
       readMore: false,
       isLooping: false,
       last_read_ayah: [],
-      showModal: false
+      showModal: false,
     };
   },
   head() {
@@ -127,34 +147,49 @@ export default {
     };
   },
   created() {
-    let lastAyahQuery = this.$route.query.ayah_last
-    if(lastAyahQuery) {
-      this.query = lastAyahQuery
-      window.scrollBy(200, 0)
+    let lastAyahQuery = this.$route.query.ayah_last;
+    if (lastAyahQuery) {
+      this.query = lastAyahQuery;
+      window.scrollBy(200, 0);
     }
+    console.log(this.myAudio);
   },
   methods: {
     addAyah(ayah, surahNumber) {
-      this.last_read_ayah.push({"ayah": ayah, "surahNumber": surahNumber});
+      this.last_read_ayah.push({ ayah: ayah, surahNumber: surahNumber });
       this.saveAyah();
-      this.toggleModal()
+      this.toggleModal();
     },
     toggleModal() {
-      this.showModal = true
-      setTimeout(() => this.showModal = false, 1800)
+      this.showModal = true;
+      setTimeout(() => (this.showModal = false), 1800);
     },
     saveAyah() {
       const parsed = JSON.stringify(this.last_read_ayah);
       localStorage.setItem("ayah", parsed);
     },
     enableLoop() {
-      this.myAudio.loop = true
-      this.isLooping = true
+      const { myAudio } = this;
+      for (let i = 0, len = myAudio.length; i < len; i++) {
+        myAudio[i].loop = true;
+      }
+      this.isLooping = true;
     },
     disableLoop() {
-      this.myAudio.loop = false
-      this.isLooping = false
-    }
+      const { myAudio } = this;
+      for (let i = 0, len = myAudio.length; i < len; i++) {
+        myAudio[i].loop = false;
+      }
+      this.isLooping = false;
+    },
+    preventDoublePlay(e) {
+      const { myAudio } = this;
+      for (let i = 0, len = myAudio.length; i < len; i++) {
+        if (myAudio[i] != e.target) {
+          myAudio[i].pause();
+        }
+      }
+    },
   },
   computed: {
     filteredAyah() {
@@ -163,8 +198,8 @@ export default {
       });
     },
     myAudio() {
-      return document.getElementById('murottal')
-    }
+      return document.getElementsByTagName("audio");
+    },
   },
 };
 </script>
