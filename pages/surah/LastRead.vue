@@ -6,7 +6,6 @@
 
     <client-only>
       <p v-if="$fetchState.pending">loading..</p>
-      <p v-else-if="last_read_ayah == []" class="text-lg dark:text-gray-400">Belum menambahkan ayat terakhir dibaca.</p>
       <ayah-list :ayah="ayah_list" v-else></ayah-list>
     </client-only>
   </div>
