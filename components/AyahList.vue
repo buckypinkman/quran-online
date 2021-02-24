@@ -1,7 +1,9 @@
 <template>
   <div class="ayat-list md:mt-6 dark:text-gray-400">
+    <p v-if="!ayah">Belum menambahkan ayat terakhir dibaca.</p>
     <div
       class="ayat md:px-4 px-2 pt-6 pb-10 border-b border-indigo-200 dark:border-gray-800"
+      v-else
     >
       <div class="wrap md:flex">
         <p class="pl-2 md:text-2xl text-xl mb-5 md:mb-0">
