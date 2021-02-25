@@ -1,5 +1,5 @@
 <template>
-  <surah-details :details="details"></surah-details>
+  <surah-details :details="details" v-if="details.name"></surah-details>
 </template>
 
 <script>
