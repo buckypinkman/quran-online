@@ -1,5 +1,6 @@
 export const state = () => ({
   favorite_surah: [],
+  local_favorite_surah: []
 })
 
 export const mutations = {
@@ -17,7 +18,7 @@ export const mutations = {
     state.favorite_surah.splice(index, 1)
   },
   getSurah(state, surah) {
-    state.favorite_surah = surah
+    state.local_favorite_surah = surah
   },
   saveSurah(state) {
     const parsed = JSON.stringify(state.favorite_surah);
