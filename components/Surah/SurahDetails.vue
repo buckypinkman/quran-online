@@ -167,24 +167,24 @@ export default {
       localStorage.setItem("ayah", parsed);
     },
     enableLoop() {
-      const { myAudio } = this;
-      for (let i = 0, len = myAudio.length; i < len; i++) {
-        myAudio[i].loop = true;
+      const { murottal } = this;
+      for (let i = 0, len = murottal.length; i < len; i++) {
+        murottal[i].loop = true;
       }
       this.isLooping = true;
     },
     disableLoop() {
-      const { myAudio } = this;
-      for (let i = 0, len = myAudio.length; i < len; i++) {
-        myAudio[i].loop = false;
+      const { murottal } = this;
+      for (let i = 0, len = murottal.length; i < len; i++) {
+        murottal[i].loop = false;
       }
       this.isLooping = false;
     },
     preventDoublePlay(e) {
-      const { myAudio } = this;
-      for (let i = 0, len = myAudio.length; i < len; i++) {
-        if (myAudio[i] != e.target) {
-          myAudio[i].pause();
+      const { murottal } = this;
+      for (let i = 0, len = murottal.length; i < len; i++) {
+        if (murottal[i] != e.target) {
+          murottal[i].pause();
         }
       }
     },
@@ -195,7 +195,7 @@ export default {
         return ayah.number.inSurah >= this.query;
       });
     },
-    myAudio() {
+    murottal() {
       return document.getElementsByTagName("audio");
     },
   },
