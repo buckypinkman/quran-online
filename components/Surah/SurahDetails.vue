@@ -1,5 +1,5 @@
 <template>
-  <div class="surah-detail dark:text-gray-400" v-if="details">
+  <div class="surah-detail dark:text-gray-400">
     <base-header-card>
       <div class="title sm:flex">
         <h1 class="font-semibold text-xl">
@@ -150,9 +150,7 @@ export default {
     let lastAyahQuery = this.$route.query.ayah_last;
     if (lastAyahQuery) {
       this.query = lastAyahQuery;
-      window.scrollBy(200, 0);
     }
-    console.log(this.myAudio);
   },
   methods: {
     addAyah(ayah, surahNumber) {
