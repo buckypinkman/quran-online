@@ -1,48 +1,40 @@
 <template>
   <div class="favorite md:mt-10 mt-5">
     <h1 class="md:text-4xl text-3xl dark:text-gray-300">Surat Favorit</h1>
-    <p>Fitur belum tersedia</p>
-    <!-- <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-if="favSurahNumber">
+    <p v-if="$store.state.favorite_surah.length == 0" class="text-lg dark:text-gray-400">Belum ada surat favorit. Segera tambahkan!</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
       <surah-list
-        v-for="surah in favSurahNumber"
+        v-for="(surah, index) in $store.state.favorite_surah"
         :key="surah.number"
         :number="surah.number"
+        :name="surah.name"
+        :arabic_name="surah.arabic_name"
+        :translated_name="surah.translated_name"
+        :ayat="surah.ayat"
+        :revelation="surah.revelation"
+        :favorite="true"
+        @surahDeleted="deleteSurah(index)"
       ></surah-list>
-      <p>{{ favorite_surah }}</p>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      favorite_surah: null,
-      surah_list: [],
-    };
-  },
-  computed: {
-    filteredSurah() {
-      return this.surah_list.filter((surah) => surah.number == this.favSurahNumber);
+  methods: {
+    deleteSurah(num) {
+      this.$store.commit('deleteSurah', num)
+      this.saveSurah()
     },
-    favSurahNumber() {
-        return this.favorite_surah.map(res => res)
-    }
+    saveSurah() {
+      // favorite_surah diserialisasi menjadi string JSON
+      const parsed = JSON.stringify(this.$store.state.favorite_surah);
+      localStorage.setItem("surah", parsed);
+    },
   },
   created() {
-    this.favorite_surah = JSON.parse(localStorage.getItem("surah"));
-    console.log(this.favSurahNumber)
+    this.$store.commit('getSurah', JSON.parse(localStorage.getItem("surah")))
   },
-  async fetch() {
-    try {
-      const data = await fetch("https://api.quran.sutanlab.id/surah");
-      const res = await data.json();
-      this.surah_list = res.data;
 
-      console.log(this.surah_list);
-    } catch (error) {
-      // console.log(error);
-    }
-  },
 };
 </script>
