@@ -18,8 +18,12 @@
         :translated_name="surah.name.translation.id"
         :ayat="surah.numberOfVerses"
         :revelation="surah.revelation.id"
+        @addedSurah="addSurah(surah)"
       ></surah-list>
     </div>
+    <success-modal v-if="showModal"
+      >Berhasil menambahkan sebagai Surat favorit</success-modal
+    >
     <the-footer />
   </div>
 </template>
@@ -30,6 +34,8 @@ export default {
     return {
       surah_list: [],
       keyword: "",
+      favorite_surah: [],
+      showModal: false,
     };
   },
   computed: {
@@ -39,6 +45,19 @@ export default {
           .toLowerCase()
           .includes(this.keyword.toLowerCase());
       });
+    },
+  },
+  methods: {
+    addSurah(surah) {
+      this.$store.commit("addSurah", surah);
+
+      this.$store.commit("saveSurah");
+
+      this.toggleModal()
+    },
+    toggleModal() {
+      this.showModal = true;
+      setTimeout(() => (this.showModal = false), 1800);
     },
   },
   async fetch() {
