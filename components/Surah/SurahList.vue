@@ -1,13 +1,23 @@
 <template>
+<transition name="fade">
   <div
     class="bg-white dark:bg-gray-800 rounded-md p-6 border border-indigo-200 shadow-lg hover:shadow transition duration-200 dark:text-white dark:border-indigo-400"
   >
     <div class="wrap flex justify-between">
       <p>{{ number }}. {{ name }}</p>
       <img
+        src="../../assets/icons/trash.svg"
+        class="w-6 cursor-pointer"
+        alt="delete icon"
+        @click="deleteSurah()"
+        v-if="favorite == true"
+      />
+      <img
         src="../../assets/icons/star.svg"
         class="w-6 cursor-pointer"
         alt="add to favorite icon"
+        @click="addSurah()"
+        v-else
       />
     </div>
     <nuxt-link :to="{ name: 'surah-number', params: { number: number } }">
@@ -24,6 +34,7 @@
       </div>
     </nuxt-link>
   </div>
+</transition>
 </template>
 
 <script>
@@ -35,30 +46,31 @@ export default {
     "translated_name",
     "ayat",
     "revelation",
+    "favorite"
   ],
   data() {
     return {
       favorite_surah: [],
-      new_favorite_surah: null,
     };
   },
   methods: {
-    addSurah(surahNumber) {
-      this.favorite_surah.push(surahNumber);
-      console.log(this.favorite_surah)
+    addSurah() {
+      this.$emit('addedSurah')
     },
-    deleteFavSurah(x) {
-      this.favorite_surah.splice(x, 1);
-      this.saveSurah();
-    },
-    saveSurah() {
-      // favorite_surah diserialisasi menjadi string JSON
-      const parsed = JSON.stringify(this.favorite_surah);
-      localStorage.setItem('surah', parsed);
+    deleteSurah() {
+      this.$emit('surahDeleted')
     }
   },
 };
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
 </style>
