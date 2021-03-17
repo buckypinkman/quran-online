@@ -24,7 +24,7 @@ body {
 
 @font-face {
   font-family: QuranFont;
-  src: url("../assets/fonts/me_quran_volt_newmet.ttf");
+  src: url("../assets/fonts/lpmq.woff");
   font-display: swap;
 }
 
