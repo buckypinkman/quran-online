@@ -9,7 +9,7 @@
         src="../../assets/icons/trash.svg"
         class="w-6 cursor-pointer"
         alt="delete icon"
-        @click="deleteSurah()"
+        @click="deleteSurah(id, $event)"
         v-if="favorite == true"
       />
       <img
@@ -40,6 +40,7 @@
 <script>
 export default {
   props: [
+    "id",
     "number",
     "name",
     "arabic_name",
@@ -48,17 +49,12 @@ export default {
     "revelation",
     "favorite"
   ],
-  data() {
-    return {
-      favorite_surah: [],
-    };
-  },
   methods: {
     addSurah() {
       this.$emit('addedSurah')
     },
-    deleteSurah() {
-      this.$emit('surahDeleted')
+    deleteSurah(id, e) {
+      this.$emit('surahDeleted', id, e)
     }
   },
 };
