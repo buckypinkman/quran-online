@@ -1,11 +1,12 @@
 <template>
   <div class="favorite md:mt-10 mt-5">
     <h1 class="md:text-4xl text-3xl dark:text-gray-300">Surat Favorit</h1>
-    <p v-if="$store.state.favorite_surah.length == 0" class="text-lg dark:text-gray-400">Belum ada surat favorit. Segera tambahkan!</p>
+    <p v-if="$store.state.local_favorite_surah.length == 0" class="text-lg dark:text-gray-400">Belum ada surat favorit. Segera tambahkan!</p>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
       <surah-list
-        v-for="(surah, index) in $store.state.favorite_surah"
+        v-for="(surah, index) in $store.state.local_favorite_surah"
         :key="surah.number"
+        :id="index"
         :number="surah.number"
         :name="surah.name"
         :arabic_name="surah.arabic_name"
@@ -13,7 +14,7 @@
         :ayat="surah.ayat"
         :revelation="surah.revelation"
         :favorite="true"
-        @surahDeleted="deleteSurah(index)"
+        @surahDeleted="deleteSurah"
       ></surah-list>
     </div>
   </div>
@@ -22,19 +23,15 @@
 <script>
 export default {
   methods: {
-    deleteSurah(num) {
-      this.$store.commit('deleteSurah', num)
-      this.saveSurah()
-    },
-    saveSurah() {
-      // favorite_surah diserialisasi menjadi string JSON
-      const parsed = JSON.stringify(this.$store.state.favorite_surah);
-      localStorage.setItem("surah", parsed);
+    deleteSurah(num, e) {
+      this.$store.commit("deleteSurah", num);
+      this.$store.commit('saveSurah')
+      e.target.parentElement.parentElement.remove()
     },
   },
-  created() {
-    this.$store.commit('getSurah', JSON.parse(localStorage.getItem("surah")))
+  mounted() {
+    this.$store.commit("getSurah", JSON.parse(localStorage.getItem("surah")));
+    // this.favorite_surah = JSON.parse(localStorage.getItem("surah"))
   },
-
 };
 </script>
