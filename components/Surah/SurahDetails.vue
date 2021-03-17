@@ -38,23 +38,24 @@
       />
     </base-header-card>
 
-    <div class="ulang-ayat-check mt-10 max-w-md mx-auto md:max-w-2xl">
+    <div
+      class="ulang-ayat-check fixed bottom-0 left-0 right-0 md:mb-24 mb-20 z-20 ml-3 max-w-md md:mx-auto md:max-w-2xl"
+    >
       <p
         @click="enableLoop"
         v-if="!isLooping"
-        class="text-xl font-semibold cursor-pointer"
+        class="text-lg font-semibold cursor-pointer"
       >
-        Ulang Audio
+        Klik untuk ulang per ayat
       </p>
       <p
         @click="disableLoop"
-        class="text-xl font-semibold cursor-pointer"
+        class="text-lg font-semibold cursor-pointer"
         v-else
       >
         Jangan Ulang Audio
       </p>
     </div>
-
     <div class="ayat-list mt-6">
       <p
         class="arabic text-center text-4xl mb-5"
@@ -64,8 +65,9 @@
       </p>
       <div
         class="ayat md:px-4 px-2 pt-6 pb-10 border-b border-indigo-200 dark:border-gray-800"
-        v-for="res in filteredAyah"
+        v-for="(res, index) in filteredAyah"
         :key="res.number.inSurah"
+        :id="`ayah-${index + 1}`"
       >
         <div class="wrap flex">
           <p
@@ -80,7 +82,7 @@
               class="mb-5 ml-2 shadow-md rounded-md"
               preload="none"
               id="murottal"
-              @play="preventDoublePlay($event)"
+              @play="preventDoublePlayAndTriggerNextPlay($event, index)"
             >
               <source :src="res.audio.primary" />
             </audio>
@@ -126,16 +128,24 @@
 </template>
 
 <script>
+import audioModule from '../../mixins/audio.js'
+import lastReadAyah from '../../mixins/lastReadAyah.js'
+
 export default {
   props: ["details"],
+  mixins: [audioModule, lastReadAyah],
   data() {
     return {
       query: "",
       readMore: false,
-      isLooping: false,
-      last_read_ayah: [],
-      showModal: false,
     };
+  },
+  computed: {
+    filteredAyah() {
+      return this.details.verses.filter((ayah) => {
+        return ayah.number.inSurah >= this.query;
+      });
+    },
   },
   head() {
     return {
@@ -145,59 +155,6 @@ export default {
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
     };
-  },
-  created() {
-    let lastAyahQuery = this.$route.query.ayah_last;
-    if (lastAyahQuery) {
-      this.query = lastAyahQuery;
-    }
-  },
-  methods: {
-    addAyah(ayah, surahNumber) {
-      this.last_read_ayah.push({ ayah: ayah, surahNumber: surahNumber });
-      this.saveAyah();
-      this.toggleModal();
-    },
-    toggleModal() {
-      this.showModal = true;
-      setTimeout(() => (this.showModal = false), 1800);
-    },
-    saveAyah() {
-      const parsed = JSON.stringify(this.last_read_ayah);
-      localStorage.setItem("ayah", parsed);
-    },
-    enableLoop() {
-      const { murottal } = this;
-      for (let i = 0, len = murottal.length; i < len; i++) {
-        murottal[i].loop = true;
-      }
-      this.isLooping = true;
-    },
-    disableLoop() {
-      const { murottal } = this;
-      for (let i = 0, len = murottal.length; i < len; i++) {
-        murottal[i].loop = false;
-      }
-      this.isLooping = false;
-    },
-    preventDoublePlay(e) {
-      const { murottal } = this;
-      for (let i = 0, len = murottal.length; i < len; i++) {
-        if (murottal[i] != e.target) {
-          murottal[i].pause();
-        }
-      }
-    },
-  },
-  computed: {
-    filteredAyah() {
-      return this.details.verses.filter((ayah) => {
-        return ayah.number.inSurah >= this.query;
-      });
-    },
-    murottal() {
-      return document.getElementsByTagName("audio");
-    },
   },
 };
 </script>
