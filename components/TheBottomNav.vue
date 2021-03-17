@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bottom-nav text-center bg-indigo-400 text-white overflow-hidden w-full md:max-w-2xl md:mb-3 md:rounded-md py-2 px-5 dark:bg-gray-800 md:border border-t dark:border-indigo-400 dark:text-gray-300 fixed bottom-0 left-0 right-0 mx-auto flex flex-row justify-evenly"
+    class="bottom-nav text-center bg-indigo-400 text-white overflow-hidden w-full md:max-w-2xl md:mb-3 md:rounded-md py-2 px-5 dark:bg-gray-800 md:border border-t dark:border-indigo-400 dark:text-gray-300 fixed bottom-0 left-0 right-0 mx-auto flex flex-row justify-around"
   >
     <nuxt-link to="/">
       <div class="nav-item cursor-pointer">
@@ -26,6 +26,16 @@
           class="mx-auto h-6"
         />
         <p class="md:text-base text-xs">Terakhir</p>
+      </div>
+    </nuxt-link>
+    <nuxt-link :to="{ name: 'jadwal-sholat' }">
+      <div class="nav-item cursor-pointer">
+        <img
+          src="../assets/icons/muslim-prayer.svg"
+          alt="ayat terakhir dibaca icon"
+          class="mx-auto h-6"
+        />
+        <p class="md:text-base text-xs">Jadwal Sholat</p>
       </div>
     </nuxt-link>
   </div>
