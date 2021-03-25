@@ -27,7 +27,7 @@
       <p class="text-gray-600 pb-4">{{ ayah.translation.id }}</p>
       <nuxt-link
         class="cursor-pointer text-indigo-400 font-semibold md:text-lg"
-        :to="{ name: 'surah-number', params: { number: ayah.surah.number }, query: { ayah_last: ayah.number.inSurah } }"
+        :to="{ name: 'surah-number', params: { number: ayah.surah.number }, hash: `#ayah-${ayah.number.inSurah}` }"
         >Lanjut baca</nuxt-link
       >
     </div>
