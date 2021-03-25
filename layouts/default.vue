@@ -1,9 +1,9 @@
 <template>
   <div>
     <the-navbar />
-    <div class="container mx-auto md:px-6 px-3 mb-24">
+    <div class="container mx-auto md:px-6 px-3 my-24">
       <Nuxt />
-      <scroll-top-btn />
+      <scroll-top-btn/>
       <the-bottom-nav />
     </div>
   </div>
@@ -30,5 +30,16 @@ body {
 
 .arabic {
   font-family: QuranFont;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.2s;
+}
+
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(15px);
+  opacity: 0;
 }
 </style>
