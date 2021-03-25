@@ -21,9 +21,11 @@
         @addedSurah="addSurah(surah)"
       ></surah-list>
     </div>
-    <success-modal v-if="showModal"
-      >Berhasil menambahkan sebagai Surat favorit</success-modal
-    >
+    <transition name="slide-fade">
+      <success-modal v-if="showModal"
+        >Berhasil menambahkan sebagai Surat favorit</success-modal
+      >
+    </transition>
     <the-footer />
   </div>
 </template>
@@ -53,7 +55,7 @@ export default {
 
       this.$store.commit("saveSurah");
 
-      this.toggleModal()
+      this.toggleModal();
     },
     toggleModal() {
       this.showModal = true;
