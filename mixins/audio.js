@@ -32,6 +32,7 @@ export default {
           murottal[i].pause();
         }
       }
+
       e.target.onended = () => {
         e.target.parentElement.parentElement.nextSibling.children[0].children[1].play()
       }
