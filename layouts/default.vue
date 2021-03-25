@@ -1,7 +1,7 @@
 <template>
   <div>
     <the-navbar />
-    <div class="container mx-auto md:px-6 px-3 mb-24 mt-12">
+    <div class="container mx-auto md:px-6 px-3 mb-24 mt-10">
       <Nuxt />
       <scroll-top-btn/>
       <the-bottom-nav />
