@@ -38,24 +38,6 @@
       />
     </base-header-card>
 
-    <div
-      class="ulang-ayat-check fixed bottom-0 left-0 right-0 md:mb-24 mb-20 z-20 ml-3 max-w-md md:mx-auto md:max-w-2xl"
-    >
-      <p
-        @click="enableLoop"
-        v-if="!isLooping"
-        class="text-lg font-semibold cursor-pointer"
-      >
-        Klik untuk ulang per ayat
-      </p>
-      <p
-        @click="disableLoop"
-        class="text-lg font-semibold cursor-pointer"
-        v-else
-      >
-        Jangan Ulang Audio
-      </p>
-    </div>
     <div class="ayat-list mt-6">
       <p
         class="arabic text-center text-4xl mb-5"
@@ -87,12 +69,24 @@
               <source :src="res.audio.primary" />
             </audio>
           </client-only>
-          <img
-            src="../../assets/icons/bookmark-indigo.png"
-            alt="bookmark ayat"
-            class="h-10 ml-auto cursor-pointer"
+          <button
             @click="addAyah(res.number.inSurah, details.number)"
-          />
+            class="ml-auto bookmark focus:outline-none"
+          >
+            <svg
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              class="w-10 h-10"
+            >
+              <path
+                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+              ></path>
+            </svg>
+          </button>
         </div>
 
         <div
@@ -105,31 +99,84 @@
       </div>
     </div>
 
-    <div class="page-nav flex pl-2">
-      <nuxt-link
-        class="font-semibold mt-5 cursor-pointer w-max mr-4 hover:underline"
-        :to="`${details.number - 1}`"
-        v-if="details.number > 1"
+    <transition name="slide-fade">
+      <img
+        src="../../assets/icons/arrow.svg"
+        class="w-5 mx-auto sm-arrow cursor-pointer fixed bottom-0 left-0 right-0"
+        @click="showBottomNav = !showBottomNav"
+        v-if="!showBottomNav"
+        alt=""
+      />
+
+      <div
+        class="fixed bottom-0 wrap left-0 right-0 mx-auto z-10"
+        v-else-if="showBottomNav"
       >
-        Sebelumnya
-      </nuxt-link>
-      <nuxt-link
-        class="font-semibold mt-5 cursor-pointer w-max hover:underline"
-        :to="`${details.number + 1}`"
-        v-if="details.number < 114"
-      >
-        Surat selanjutnya
-      </nuxt-link>
-      <success-modal v-if="showModal"
+        <div>
+          <img
+            src="../../assets/icons/arrow.svg"
+            class="w-5 mx-auto mb-3 arrow cursor-pointer"
+            @click="showBottomNav = !showBottomNav"
+            alt=""
+          />
+        </div>
+        <div
+          class="page-nav text-center md:text-base py-3 text-sm bg-indigo-400 mx-auto text-white overflow-hidden w-full md:max-w-2xl md:mb-3 md:rounded-md py-2 px-5 dark:bg-gray-800 md:border border-t dark:border-indigo-400 dark:text-gray-300 flex flex-row justify-around"
+        >
+          <nuxt-link
+            class="font-semibold cursor-pointer w-max hover:underline"
+            :to="`${details.number - 1}`"
+            v-if="details.number > 1"
+          >
+            &larr; Sebelumnya
+          </nuxt-link>
+          <div class="ulang-ayat-check">
+            <span
+              @click="enableLoop"
+              v-if="!isLooping"
+              class="font-semibold mx-10 cursor-pointer flex"
+            >
+              <img
+                src="../../assets/icons/repeat.svg"
+                class="w-5 md:mr-2"
+                alt="repeat icon"
+              />
+              <p>Ulang Audio <span class="text-xs">(nonaktif)</span></p>
+            </span>
+            <span
+              @click="disableLoop"
+              class="font-semibold cursor-pointer flex"
+              v-else
+            >
+              <img
+                src="../../assets/icons/repeat.svg"
+                class="w-5 md:mr-2"
+                alt="repeat icon"
+              />
+              <p>Ulang Audio <span class="text-xs">(aktif)</span></p>
+            </span>
+          </div>
+          <nuxt-link
+            class="font-semibold cursor-pointer w-max hover:underline"
+            :to="`${details.number + 1}`"
+            v-if="details.number < 114"
+          >
+            Surat selanjutnya &rarr;
+          </nuxt-link>
+        </div>
+      </div>
+    </transition>
+    <transition name="slide-fade"
+      ><success-modal v-if="showModal"
         >Berhasil menambahkan sebagai ayat terakhir dibaca</success-modal
-      >
-    </div>
+      ></transition
+    >
   </div>
 </template>
 
 <script>
-import audioModule from '../../mixins/audio.js'
-import lastReadAyah from '../../mixins/lastReadAyah.js'
+import audioModule from "../../mixins/audio.js";
+import lastReadAyah from "../../mixins/lastReadAyah.js";
 
 export default {
   props: ["details"],
@@ -138,6 +185,7 @@ export default {
     return {
       query: "",
       readMore: false,
+      showBottomNav: false,
     };
   },
   computed: {
@@ -167,8 +215,44 @@ audio:focus {
   outline: none;
 }
 
+.arrow {
+  transform: rotate(180deg);
+}
+
 .dark-mode audio {
   @apply bg-gray-500;
+}
+
+.page-nav {
+  margin-bottom: 3.55rem;
+}
+
+.sm-arrow {
+  margin-bottom: 4.6rem;
+}
+
+.bookmark {
+  color: #98a7fa;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.2s;
+}
+
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(15px);
+  opacity: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .page-nav {
+    margin-bottom: 5rem;
+  }
+  .sm-arrow {
+    margin-bottom: 5.5rem;
+  }
 }
 
 .dark-mode audio::-webkit-media-controls-play-button,
