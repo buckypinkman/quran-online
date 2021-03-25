@@ -235,16 +235,6 @@ audio:focus {
   color: #98a7fa;
 }
 
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.2s;
-}
-
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateY(15px);
-  opacity: 0;
-}
 
 @media only screen and (min-width: 768px) {
   .page-nav {
