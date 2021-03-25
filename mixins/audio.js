@@ -9,7 +9,7 @@ export default {
       const {
         murottal
       } = this;
-      for (let i = 0, len = murottal.length; i < len; i++) {
+      for (let i = 0; i < murottal.length; i++) {
         murottal[i].loop = true;
       }
       this.isLooping = true;
@@ -18,7 +18,7 @@ export default {
       const {
         murottal
       } = this;
-      for (let i = 0, len = murottal.length; i < len; i++) {
+      for (let i = 0; i < murottal.length; i++) {
         murottal[i].loop = false;
       }
       this.isLooping = false;
@@ -27,7 +27,7 @@ export default {
       const {
         murottal
       } = this;
-      for (let i = 0, len = murottal.length; i < len; i++) {
+      for (let i = 0; i < murottal.length; i++) {
         if (murottal[i] != e.target) {
           murottal[i].pause();
         }
