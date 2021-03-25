@@ -5,14 +5,3 @@
       <slot></slot>
     </div>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-}
-</style>
