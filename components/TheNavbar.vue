@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex fixed w-full items-center justify-between top-0 dark:bg-gray-900 px-6 h-16 bg-white text-gray-700 border-b border-gray-200 dark:border-gray-700 z-10"
+    class="flex w-full items-center justify-between top-0 dark:bg-gray-900 px-6 h-16 bg-white text-gray-700 border-b border-gray-200 dark:border-gray-700 z-10"
   >
     <div class="flex items-center">
       <button class="mr-2" aria-label="Open Menu" @click="drawer">
@@ -63,63 +63,70 @@
           />
         </svg>
       </span>
-      <span
-        @click="isOpen = false"
-        class="flex items-center p-4 cursor-pointer"
-        ><span class="mr-2">
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            class="w-6 h-6"
-          >
-            <path
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            ></path>
-          </svg>
-        </span>
-        <span>Home</span></span
-      >
-      <span
-        @click="isOpen = false"
-        class="flex items-center p-4 cursor-pointer"
-        ><span class="mr-2">
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            class="w-6 h-6"
-          >
-            <path
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-        </span>
-        <span>About</span></span
-      >
-      <span
-        @click="isOpen = false"
-        class="flex items-center p-4 cursor-pointer"
-        ><span class="mr-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="bi bi-code-slash h-6 w-6"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"
-            />
-          </svg>
-        </span>
-        <span>Source Code</span></span
-      >
+      <nuxt-link to="/">
+        <span
+          @click="isOpen = false"
+          class="flex items-center p-4 cursor-pointer"
+          ><span class="mr-2">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              class="w-6 h-6"
+            >
+              <path
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              ></path>
+            </svg>
+          </span>
+          <span>Home</span></span
+        >
+      </nuxt-link>
+      <nuxt-link to="/about">
+        <span
+          @click="isOpen = false"
+          class="flex items-center p-4 cursor-pointer"
+          ><span class="mr-2">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              class="w-6 h-6"
+            >
+              <path
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </span>
+          <span>Tentang</span></span
+        >
+      </nuxt-link>
+
+      <a href="https://github.com/buckypinkman/quran-online" target="_blank">
+        <span
+          @click="isOpen = false"
+          class="flex items-center p-4 cursor-pointer"
+          ><span class="mr-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              class="bi bi-code-slash h-6 w-6"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"
+              />
+            </svg>
+          </span>
+          <span>Source Code</span></span
+        >
+      </a>
       <div class="fixed bottom-0 w-full">
         <label for="theme" class="ml-3">Tema</label>
         <select
@@ -134,7 +141,7 @@
         <a
           rel="noopener"
           class="flex items-center p-4 bg-indigo-600 text-white"
-          href=""
+          href="https://trakteer.id/bucky"
           target="_blank"
         >
           <img
@@ -145,7 +152,7 @@
           <p>
             <span class="font-bold">Buy me a Coffee</span>
             <br />
-            <span class="text-sm text-white">Wanna support me?</span>
+            <span class="text-sm text-white">Support the developer</span>
           </p>
         </a>
       </div>
