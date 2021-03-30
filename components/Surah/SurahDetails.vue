@@ -33,7 +33,7 @@
       <input
         type="search"
         class="w-full py-2 px-4 focus:outline-none focus:bg-white border border-indigo-200 focus:border-indigo-400 bg-gray-100 rounded transition duration-200 dark:border-indigo-400 dark:bg-gray-700"
-        placeholder="Cari ayat.. cth: 200"
+        :placeholder="`Cari ayat.. cth: ${details.numberOfVerses}`"
         v-model="query"
       />
     </base-header-card>
