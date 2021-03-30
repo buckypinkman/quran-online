@@ -8,10 +8,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Baca Quran Online dimana saja' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
     ]
   },
 
@@ -54,7 +54,9 @@ export default {
       source: 'static/icon.png'
     },
     manifest: {
-      name: "Qur'anKu",
+      name: "Al-Qur'an",
+      short_name: "Al-Qur'an",
+      description: "Baca Qur'an Online dimana saja"
     }
   },
 
