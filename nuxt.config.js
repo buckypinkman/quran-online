@@ -9,6 +9,11 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Baca Quran Online dimana saja' }
+      { hid: 'author', name: 'author', content: 'Rangga Dimas' },
+      { hid: 'og:title', property: 'og:title', content: "Al-Qur'an" },
+      { hid: 'og:description', property: 'og:description', content: "Al-Qur'an Online - Baca Quran Online dimana saja" },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://quran-online.netlify.app/' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
@@ -56,7 +61,8 @@ export default {
     manifest: {
       name: "Al-Qur'an",
       short_name: "Al-Qur'an",
-      description: "Baca Qur'an Online dimana saja"
+      description: "Baca Qur'an Online dimana saja",
+      lang: 'id',
     }
   },
 
