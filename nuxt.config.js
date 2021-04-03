@@ -8,7 +8,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Baca Quran Online dimana saja' }
+      { hid: 'description', name: 'description', content: 'Baca Quran Online dimana saja' },
       { hid: 'author', name: 'author', content: 'Rangga Dimas' },
       { hid: 'og:title', property: 'og:title', content: "Al-Qur'an" },
       { hid: 'og:description', property: 'og:description', content: "Al-Qur'an Online - Baca Quran Online dimana saja" },
