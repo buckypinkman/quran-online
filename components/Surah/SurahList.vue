@@ -9,7 +9,7 @@
         src="../../assets/icons/star-filled.svg"
         class="w-6 cursor-pointer"
         alt="delete icon"
-        @click="deleteSurah(id, $event)"
+        @click="deleteSurah(id)"
         v-if="favorite == true"
       />
       <img
@@ -53,8 +53,8 @@ export default {
     addSurah() {
       this.$emit('addedSurah')
     },
-    deleteSurah(id, e) {
-      this.$emit('surahDeleted', id, e)
+    deleteSurah(id) {
+      this.$emit('surahDeleted', id)
     }
   },
 };
