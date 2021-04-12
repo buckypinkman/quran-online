@@ -2,7 +2,7 @@
   <div
     class="bottom-nav text-center bg-indigo-400 text-white overflow-hidden w-full md:max-w-2xl md:mb-3 md:rounded-md py-2 px-5 dark:bg-gray-800 dark:text-gray-300 fixed bottom-0 left-0 right-0 mx-auto flex flex-row justify-around"
   >
-    <nuxt-link to="/">
+    <nuxt-link to="/" exact>
       <div class="nav-item cursor-pointer">
         <img src="../assets/icons/home.svg" alt="home icon" class="mx-auto" />
         <p class="md:text-base text-xs">Home</p>
@@ -48,6 +48,18 @@
 </template>
 
 <style scoped>
+a {
+  opacity: .7;
+}
+
+a.nuxt-link-active {
+  opacity: 1;
+}
+/* exact link will show the primary color for only the exact matching link */
+a.nuxt-link-exact-active {
+   opacity: 1;
+}
+
 .bottom-nav {
   box-shadow: 0 4px 24px 0 rgb(0 0 0 / 10%), 0 4px 20px 0 rgb(0 0 0 / 6%);
 }
