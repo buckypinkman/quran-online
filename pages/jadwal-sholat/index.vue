@@ -12,7 +12,7 @@
       <select
         v-model="selected"
         @change="getJadwal"
-        class="py-2 px-3 text-gray-800 rounded focus:outline-none border border-indigo-400"
+        class="py-2 px-3 text-gray-800 rounded focus:outline-none border w-full border-indigo-400"
       >
         <option disabled value="">Pilih daerah</option>
         <option v-for="kota in filteredKota" :key="kota.id" :value="kota.id">
@@ -26,7 +26,7 @@
       v-if="jadwal_sholat"
     >
       <div
-        class="jadwal-list dark:bg-gray-800 dark:text-gray-400 md:w-6/12 bg-white shadow-lg rounded-md py-6 px-10 flex justify-between"
+        class="jadwal-list dark:text-gray-400 md:w-6/12 border border-indigo-400 rounded-md py-6 px-10 flex justify-between"
       >
         <div class="jadwal-item text-lg font-semibold">
           <p>Imsak</p>
@@ -49,8 +49,8 @@
         </div>
       </div>
 
-      <div class="jadwal-title md:w-6/12 md:pl-4 mb-5 md:mb-0">
-        <h1 class="md:text-3xl text-lg text-gray-800 font-semibold dark:text-gray-400">
+      <div class="jadwal-title md:w-6/12 md:pl-4 mb-4 md:mb-0">
+        <h1 class="md:text-3xl text-sm text-gray-500 md:font-semibold dark:text-gray-400">
           Jadwal Sholat untuk daerah {{ kota }} {{ jadwal_sholat.tanggal }}
         </h1>
       </div>
@@ -118,7 +118,6 @@ export default {
       }
     },
   },
-  fetch() {},
   created() {
     this.getKota();
   },
