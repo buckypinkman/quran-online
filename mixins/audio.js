@@ -5,6 +5,13 @@ export default {
     }
   },
   methods: {
+    toggleLoop() {
+      if (this.isLooping === true) {
+        this.disableLoop()
+      } else {
+        this.enableLoop()
+      }
+    },
     enableLoop() {
       const {
         murottal
