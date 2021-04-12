@@ -1,7 +1,12 @@
 <template>
   <div class="favorite md:mt-10 mt-5">
     <h1 class="md:text-4xl text-3xl dark:text-gray-300">Surat Favorit</h1>
-    <p v-if="$store.state.local_favorite_surah.length == 0" class="text-lg dark:text-gray-400">Belum ada surat favorit. Segera tambahkan!</p>
+    <p
+      v-if="$store.state.local_favorite_surah.length == 0"
+      class="text-lg dark:text-gray-400"
+    >
+      Belum ada surat favorit. Segera tambahkan!
+    </p>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
       <surah-list
         v-for="(surah, index) in $store.state.local_favorite_surah"
@@ -23,14 +28,13 @@
 <script>
 export default {
   methods: {
-    deleteSurah(num, e) {
+    deleteSurah(num) {
       this.$store.commit("deleteSurah", num);
-      this.$store.commit('saveSurah')
-      e.target.parentElement.parentElement.remove()
     },
   },
   mounted() {
-    this.$store.commit("getSurah", JSON.parse(localStorage.getItem("surah")));
+    const surah = JSON.parse(window.localStorage.getItem("surah"));
+    this.$store.commit("getSurah", surah);
     // this.favorite_surah = JSON.parse(localStorage.getItem("surah"))
   },
 };
