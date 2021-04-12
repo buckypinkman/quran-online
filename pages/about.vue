@@ -14,7 +14,7 @@
       <section class="icons mt-10 mr-12">
         <h2 class="md:text-2xl text-xl">Icons by</h2>
         <div>
-          <ul class="list-disc text-indigo-200">
+          <ul class="list-disc text-indigo-400">
             <li class="ml-5">
               <a href="https://www.icons8.com/" target="_blank">Icons8</a>
             </li>
@@ -30,12 +30,13 @@
 
       <section class="data-api mt-10">
         <h2 class="md:text-2xl text-xl">API from</h2>
-        <a href="https://github.com/sutanlab/quran-api" class="text-indigo-200"
+        <a href="https://github.com/sutanlab/quran-api" class="text-indigo-400"
           >Sutanlab Qur'an API</a
         >
       </section>
     </div>
 
     <the-footer class="fixed bottom-0 left-0 right-0 mb-24"></the-footer>
+    <p class="fixed bottom-0 left-0 text-center right-0 mb-32 text-gray-500 text-sm">(+6289516861625)</p>
   </div>
 </template>
