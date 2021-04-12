@@ -41,7 +41,7 @@
     <div class="ayat-list mt-6">
       <p
         class="arabic text-center text-4xl mb-5"
-        v-if="details.preBismillah != null"
+        v-if="details.preBismillah"
       >
         {{ details.preBismillah.text.arab }}
       </p>
@@ -62,7 +62,6 @@
               controls="controls"
               controlslist="nodownload"
               class="mb-5 ml-2 shadow-md rounded-md"
-              preload="none"
               id="murottal"
               @play="preventDoublePlayAndTriggerNextPlay($event, index)"
             >
@@ -105,7 +104,7 @@
         class="w-5 mx-auto sm-arrow cursor-pointer fixed bottom-0 left-0 right-0"
         @click="showBottomNav = !showBottomNav"
         v-if="!showBottomNav"
-        alt=""
+        alt="arrow icon"
       />
 
       <div
@@ -117,7 +116,7 @@
             src="../../assets/icons/arrow.svg"
             class="w-5 mx-auto mb-3 arrow cursor-pointer"
             @click="showBottomNav = !showBottomNav"
-            alt=""
+            alt="arrow icon"
           />
         </div>
         <div
@@ -132,8 +131,7 @@
           </nuxt-link>
           <div class="ulang-ayat-check">
             <span
-              @click="enableLoop"
-              v-if="!isLooping"
+              @click="toggleLoop"
               class="font-semibold mx-10 cursor-pointer flex"
             >
               <img
@@ -141,19 +139,7 @@
                 class="w-5 md:mr-2"
                 alt="repeat icon"
               />
-              <p>Ulang Audio <span class="text-xs">(nonaktif)</span></p>
-            </span>
-            <span
-              @click="disableLoop"
-              class="font-semibold cursor-pointer flex"
-              v-else
-            >
-              <img
-                src="../../assets/icons/repeat.svg"
-                class="w-5 md:mr-2"
-                alt="repeat icon"
-              />
-              <p>Ulang Audio <span class="text-xs">(aktif)</span></p>
+              <p>Ulang Audio <span class="text-xs">{{ isLooping ? '(aktif)' : '(nonaktif)' }}</span></p>
             </span>
           </div>
           <nuxt-link
