@@ -6,7 +6,7 @@
     <div class="wrap flex justify-between">
       <p>{{ number }}. {{ name }}</p>
       <img
-        src="../../assets/icons/trash.svg"
+        src="../../assets/icons/star-filled.svg"
         class="w-6 cursor-pointer"
         alt="delete icon"
         @click="deleteSurah(id, $event)"
@@ -47,7 +47,7 @@ export default {
     "translated_name",
     "ayat",
     "revelation",
-    "favorite"
+    "favorite",
   ],
   methods: {
     addSurah() {
@@ -63,7 +63,7 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.15s;
+  transition: opacity 0.4s;
 }
 .fade-enter,
 .fade-leave-active {
