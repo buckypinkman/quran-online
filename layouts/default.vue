@@ -42,4 +42,13 @@ body {
   transform: translateY(15px);
   opacity: 0;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
 </style>
