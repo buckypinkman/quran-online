@@ -9,7 +9,7 @@
       />
     </base-header-card>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-      <surah-list
+      <Surah
         v-for="surah in filteredSurah"
         :key="surah.number"
         :number="surah.number"
@@ -20,7 +20,7 @@
         :revelation="surah.revelation.id"
         @addedSurah="addSurah(surah)"
         @surahDeleted="deleteSurah"
-      ></surah-list>
+      ></Surah>
     </div>
     <transition name="slide-fade">
       <success-modal v-if="showModal"

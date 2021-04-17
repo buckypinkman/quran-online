@@ -8,7 +8,7 @@
       Belum ada surat favorit. Segera tambahkan!
     </p>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
-      <surah-list
+      <Surah
         v-for="(surah, index) in $store.state.local_favorite_surah"
         :key="surah.number"
         :id="index"
@@ -20,7 +20,7 @@
         :revelation="surah.revelation"
         :favorite="true"
         @surahDeleted="deleteSurah"
-      ></surah-list>
+      ></Surah>
     </div>
   </div>
 </template>
