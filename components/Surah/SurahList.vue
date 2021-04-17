@@ -1,40 +1,40 @@
 <template>
-<transition name="fade">
-  <div
-    class="bg-white dark:bg-gray-800 rounded-md p-6 border border-indigo-200 shadow-lg hover:shadow transition duration-200 dark:text-white dark:border-indigo-400"
-  >
-    <div class="wrap flex justify-between">
-      <p>{{ number }}. {{ name }}</p>
-      <img
-        src="../../assets/icons/star-filled.svg"
-        class="w-6 cursor-pointer"
-        alt="delete icon"
-        @click="deleteSurah(id)"
-        v-if="favorite == true"
-      />
-      <img
-        src="../../assets/icons/star.svg"
-        class="w-6 cursor-pointer"
-        alt="add to favorite icon"
-        @click="addSurah()"
-        v-else
-      />
-    </div>
-    <nuxt-link :to="{ name: 'surah-number', params: { number: number } }">
-      <p class="text-gray-600 text-sm mt-1 dark:text-gray-500">
-        {{ ayat }} Ayat / {{ revelation }}
-      </p>
-      <div class="flex flex-row-reverse">
-        <p class="arabic text-3xl mb-3 text-indigo-700 dark:text-indigo-400">
-          {{ arabic_name }}
+  <transition name="fade">
+    <div
+      class="bg-white dark:bg-gray-800 rounded-md p-6 border border-indigo-200 shadow-lg hover:shadow transition duration-200 dark:text-white dark:border-indigo-400"
+    >
+      <div class="wrap flex justify-between">
+        <p>{{ number }}. {{ name }}</p>
+        <img
+          src="../../assets/icons/star-filled.svg"
+          class="w-6 cursor-pointer"
+          alt="delete icon"
+          @click="deleteSurah(id)"
+          v-if="findInFavorite(name)"
+        />
+        <img
+          src="../../assets/icons/star.svg"
+          class="w-6 cursor-pointer"
+          alt="add to favorite icon"
+          @click="addSurah()"
+          v-else
+        />
+      </div>
+      <nuxt-link :to="{ name: 'surah-number', params: { number: number } }">
+        <p class="text-gray-600 text-sm mt-1 dark:text-gray-500">
+          {{ ayat }} Ayat / {{ revelation }}
         </p>
-      </div>
-      <div class="flex flex-row-reverse">
-        <p class="text-gray-600 dark:text-gray-500">{{ translated_name }}</p>
-      </div>
-    </nuxt-link>
-  </div>
-</transition>
+        <div class="flex flex-row-reverse">
+          <p class="arabic text-3xl mb-3 text-indigo-700 dark:text-indigo-400">
+            {{ arabic_name }}
+          </p>
+        </div>
+        <div class="flex flex-row-reverse">
+          <p class="text-gray-600 dark:text-gray-500">{{ translated_name }}</p>
+        </div>
+      </nuxt-link>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -49,24 +49,22 @@ export default {
     "revelation",
     "favorite",
   ],
+  data() {
+    return {
+      favorite_surah: [],
+    };
+  },
   methods: {
     addSurah() {
-      this.$emit('addedSurah')
+      this.$emit("addedSurah");
     },
     deleteSurah(id) {
-      this.$emit('surahDeleted', id)
-    }
+      this.$emit("surahDeleted", id);
+    },
+    findInFavorite(surahName) {
+      return this.$store.state.local_favorite_surah.find((surah) => surah.name == surahName);
+      console.log('fsdjfnsdkjfn')
+    },
   },
 };
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-}
-</style>
