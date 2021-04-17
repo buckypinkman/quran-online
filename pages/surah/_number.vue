@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  transition: 'fade',
   data() {
     return {
       details: [],

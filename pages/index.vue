@@ -19,24 +19,27 @@
         :ayat="surah.numberOfVerses"
         :revelation="surah.revelation.id"
         @addedSurah="addSurah(surah)"
+        @surahDeleted="deleteSurah"
       ></surah-list>
     </div>
     <transition name="slide-fade">
       <success-modal v-if="showModal"
-        >Berhasil menambahkan sebagai Surat favorit</success-modal
+        >
+          <p>Berhasil menambahkan sebagai Surat favorit</p>
+        </success-modal
       >
     </transition>
-    <the-footer />
+    <Footer />
   </div>
 </template>
 
 <script>
 export default {
+  transition: 'fade',
   data() {
     return {
       surah_list: [],
       keyword: "",
-      favorite_surah: [],
       showModal: false,
     };
   },
@@ -57,6 +60,9 @@ export default {
 
       this.toggleModal();
     },
+    deleteSurah(num) {
+      this.$store.commit("deleteSurah", num);
+    },
     toggleModal() {
       this.showModal = true;
       setTimeout(() => (this.showModal = false), 1800);
@@ -72,6 +78,12 @@ export default {
     } catch (error) {
       // console.log(error);
     }
+  },
+  mounted() {
+    //get the local favorite surah in mounted lifecycle if SSR is active
+    const surah = JSON.parse(window.localStorage.getItem("surah"));
+    this.$store.commit("getSurah", surah);
+    // this.favorite_surah = JSON.parse(localStorage.getItem("surah"))
   },
 };
 </script>

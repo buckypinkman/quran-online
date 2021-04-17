@@ -28,15 +28,24 @@
         </div>
       </section>
 
-      <section class="data-api mt-10">
+      <section class="data-api mt-10 flex flex-col">
         <h2 class="md:text-2xl text-xl">API from</h2>
         <a href="https://github.com/sutanlab/quran-api" class="text-indigo-400"
           >Sutanlab Qur'an API</a
         >
+        <a href="https://fathimah.docs.apiary.io/#reference/sholat" class="text-indigo-400"
+          >fathimah.docs.apiary.io</a
+        >
       </section>
     </div>
 
-    <the-footer class="fixed bottom-0 left-0 right-0 mb-24"></the-footer>
+    <Footer class="fixed bottom-0 left-0 right-0 mb-24" />
     <p class="fixed bottom-0 left-0 text-center right-0 mb-32 text-gray-500 text-sm">(+6289516861625)</p>
   </div>
 </template>
+
+<script>
+export default {
+  transition: 'fade',
+}
+</script>

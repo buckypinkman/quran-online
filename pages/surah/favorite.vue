@@ -27,15 +27,11 @@
 
 <script>
 export default {
+  transition: 'fade',
   methods: {
     deleteSurah(num) {
       this.$store.commit("deleteSurah", num);
     },
-  },
-  mounted() {
-    const surah = JSON.parse(window.localStorage.getItem("surah"));
-    this.$store.commit("getSurah", surah);
-    // this.favorite_surah = JSON.parse(localStorage.getItem("surah"))
   },
 };
 </script>

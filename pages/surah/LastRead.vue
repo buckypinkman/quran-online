@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  transition: 'fade',
   data() {
     return {
       last_read_ayah: [],

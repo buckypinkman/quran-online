@@ -60,6 +60,7 @@
 
 <script>
 export default {
+  transition: 'fade',
   data() {
     return {
       list_kota: null,
