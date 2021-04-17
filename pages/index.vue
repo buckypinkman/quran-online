@@ -61,6 +61,7 @@ export default {
       this.toggleModal();
     },
     deleteSurah(num) {
+      //CANT REMOVE AYAH FROM HOMEPAGE BY ITS ID
       // this.$store.commit("deleteSurah", num);
     },
     toggleModal() {
