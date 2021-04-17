@@ -49,7 +49,7 @@
 
 <style scoped>
 a {
-  opacity: .7;
+  opacity: .65;
 }
 
 a.nuxt-link-active {
