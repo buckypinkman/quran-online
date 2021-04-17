@@ -6,11 +6,7 @@ export default {
   },
   methods: {
     toggleLoop() {
-      if (this.isLooping === true) {
-        this.disableLoop()
-      } else {
-        this.enableLoop()
-      }
+      this.isLooping === true ? this.disableLoop() : this.enableLoop()
     },
     enableLoop() {
       const {
@@ -41,7 +37,13 @@ export default {
       }
 
       e.target.onended = () => {
-        e.target.parentElement.parentElement.nextSibling.children[0].children[1].play()
+        const nextAudioEl = e.target.parentElement.parentElement.nextSibling.children[0].children[1]
+        nextAudioEl.play()
+      }
+
+      e.target.onplaying = () => {
+        const nextAudioEl = e.target.parentElement.parentElement.nextSibling.children[0].children[1]
+        nextAudioEl.preload = true
       }
 
       this.$router.push({
