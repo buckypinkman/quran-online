@@ -1,6 +1,5 @@
 <template>
-  <Skeleton v-if="details == null"/>
-  <surah-details :details="details" v-else-if="details.name"></surah-details>
+  <surah-details :details="details" v-if="details.name"></surah-details>
 </template>
 
 <script>
