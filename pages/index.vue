@@ -8,7 +8,8 @@
         v-model="keyword"
       />
     </base-header-card>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+    <Skeleton v-if="surah_list == null" />
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" v-else>
       <Surah
         v-for="surah in filteredSurah"
         :key="surah.number"
@@ -38,7 +39,7 @@ export default {
   transition: 'fade',
   data() {
     return {
-      surah_list: [],
+      surah_list: null,
       keyword: "",
       showModal: false,
     };

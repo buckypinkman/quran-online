@@ -1,5 +1,6 @@
 <template>
-  <surah-details :details="details" v-if="details.name"></surah-details>
+  <Skeleton v-if="details == null"/>
+  <surah-details :details="details" v-else-if="details.name"></surah-details>
 </template>
 
 <script>
@@ -7,7 +8,7 @@ export default {
   transition: 'fade',
   data() {
     return {
-      details: [],
+      details: null,
     }
   },
   async fetch() {
