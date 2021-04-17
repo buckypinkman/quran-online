@@ -61,7 +61,7 @@ export default {
       this.toggleModal();
     },
     deleteSurah(num) {
-      this.$store.commit("deleteSurah", num);
+      // this.$store.commit("deleteSurah", num);
     },
     toggleModal() {
       this.showModal = true;
