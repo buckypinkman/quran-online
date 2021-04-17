@@ -12,7 +12,7 @@
       <select
         v-model="selected"
         @change="getJadwal"
-        class="py-2 px-3 text-gray-800 rounded focus:outline-none border w-full border-indigo-400"
+        class="py-2 px-3 text-gray-800 dark:text-white dark:bg-gray-800 rounded focus:outline-none border w-full border-indigo-400"
       >
         <option disabled value="">Pilih daerah</option>
         <option v-for="kota in filteredKota" :key="kota.id" :value="kota.id">
@@ -124,3 +124,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+<style>
