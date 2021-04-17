@@ -57,17 +57,16 @@
           >
             {{ details.number }}:{{ res.number.inSurah }}
           </p>
-          <client-only>
             <audio
               controls="controls"
               controlslist="nodownload"
               class="mb-5 ml-2 shadow-md rounded-md"
               id="murottal"
+              preload="none"
               @play="preventDoublePlayAndTriggerNextPlay($event, index)"
             >
               <source :src="res.audio.primary" />
             </audio>
-          </client-only>
           <button
             @click="addAyah(res.number.inSurah, details.number)"
             class="ml-auto bookmark focus:outline-none"
@@ -184,10 +183,6 @@ export default {
   head() {
     return {
       title: `${this.details.name.transliteration.id} | Al-Quran Online`,
-      meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-      ],
     };
   },
 };
