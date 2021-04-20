@@ -23,10 +23,4 @@ export default {
       localStorage.setItem("ayah", parsed);
     },
   },
-  created() {
-    let lastAyahQuery = this.$route.query.ayah_last;
-    if (lastAyahQuery) {
-      this.query = lastAyahQuery;
-    }
-  },
 }
