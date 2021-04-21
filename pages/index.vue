@@ -19,15 +19,11 @@
         :ayat="surah.numberOfVerses"
         :revelation="surah.revelation.id"
         @addedSurah="addSurah(surah)"
-        @surahDeleted="deleteSurah"
       ></Surah>
     </div>
     <transition name="slide-fade">
       <success-modal v-if="$store.state.showModal"
-        >
-          <p>Berhasil menambahkan sebagai Surat favorit</p>
-        </success-modal
-      >
+        />
     </transition>
     <Footer />
   </div>
@@ -54,10 +50,6 @@ export default {
   methods: {
     addSurah(surah) {
       this.$store.commit("addSurah", surah);
-    },
-    deleteSurah(num) {
-      //CANT REMOVE AYAH FROM HOMEPAGE BY ITS ID
-      // this.$store.commit("deleteSurah", num);
     },
   },
   async fetch() {
