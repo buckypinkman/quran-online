@@ -23,7 +23,7 @@
       ></Surah>
     </div>
     <transition name="slide-fade">
-      <success-modal v-if="showModal"
+      <success-modal v-if="$store.state.showModal"
         >
           <p>Berhasil menambahkan sebagai Surat favorit</p>
         </success-modal
@@ -40,7 +40,6 @@ export default {
     return {
       surah_list: [],
       keyword: "",
-      showModal: false,
     };
   },
   computed: {
@@ -55,18 +54,10 @@ export default {
   methods: {
     addSurah(surah) {
       this.$store.commit("addSurah", surah);
-
-      this.$store.commit("saveSurah");
-
-      this.toggleModal();
     },
     deleteSurah(num) {
       //CANT REMOVE AYAH FROM HOMEPAGE BY ITS ID
       // this.$store.commit("deleteSurah", num);
-    },
-    toggleModal() {
-      this.showModal = true;
-      setTimeout(() => (this.showModal = false), 1800);
     },
   },
   async fetch() {
