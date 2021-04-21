@@ -5,6 +5,7 @@ export const strict = false
 export const state = () => ({
   local_favorite_surah: [],
   showModal: false,
+  modal_title: ''
 })
 
 export const mutations = {
@@ -18,17 +19,20 @@ export const mutations = {
       revelation: surah.revelation.id,
     });
     addToLocal(state.local_favorite_surah, "surah")
-    this.commit('toggleModal')
+    this.commit('toggleModal', 'Berhasil menambahkan sebagai surat favorit')
   },
   deleteSurah(state, index) {
-    state.local_favorite_surah.splice(index, 1)
+    const id = state.local_favorite_surah.map(item => item.number).indexOf(index)
+    state.local_favorite_surah.splice(id, 1)
     addToLocal(state.local_favorite_surah, "surah")
+    this.commit('toggleModal', 'Berhasil menghapus surat dari daftar favorit')
   },
   getSurah(state, surah) {
     state.local_favorite_surah = surah
   },
-  toggleModal(state) {
+  toggleModal(state, title) {
     state.showModal = true;
+    state.modal_title = title
     setTimeout(() => (state.showModal = false), 1800);
   },
 }
