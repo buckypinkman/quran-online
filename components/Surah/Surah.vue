@@ -63,7 +63,6 @@ export default {
     },
     findInFavorite(surahName) {
       return this.$store.state.local_favorite_surah.find((surah) => surah.name == surahName);
-      console.log('fsdjfnsdkjfn')
     },
   },
 };
