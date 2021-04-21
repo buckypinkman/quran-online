@@ -160,8 +160,7 @@
     </transition>
     <transition name="slide-fade"
       ><success-modal v-if="$store.state.showModal"
-        >Berhasil menambahkan sebagai ayat terakhir dibaca</success-modal
-      ></transition
+        />></transition
     >
   </div>
 </template>
