@@ -4,11 +4,13 @@
       Ayat terakhir dibaca
     </h1>
 
-    <p v-if="$fetchState.pending">loading..</p>
-    <p v-else-if="ayah_list == null" class="text-lg dark:text-gray-400">
-      Belum menambahkan ayat terakhir dibaca. Segera membaca!
+    <p
+      v-if="!last_read_ayah"
+      class="text-lg dark:text-gray-400"
+    >
+      Belum ada ayat terakhir dibaca. Segera tambahkan!
     </p>
-    <ayah-list :ayah="ayah_list" v-else></ayah-list>
+    <Ayah :ayah="last_read_ayah[0]" v-else></Ayah>
   </div>
 </template>
 
@@ -18,25 +20,10 @@ export default {
   data() {
     return {
       last_read_ayah: [],
-      ayah_list: null,
     };
   },
-  created() {
-    this.last_read_ayah = JSON.parse(localStorage.getItem("ayah"));
-  },
-  fetch() {
-    this.last_read_ayah.forEach(async (res) => {
-      try {
-        const resAyah = await fetch(
-          `https://api.quran.sutanlab.id/surah/${res.surahNumber}/${res.ayah}`
-        );
-        const data = await resAyah.json();
-
-        this.ayah_list = data.data;
-      } catch (error) {
-        // console.log(error);
-      }
-    });
+  mounted() {
+    this.last_read_ayah = JSON.parse(window.localStorage.getItem("ayah"));
   },
 };
 </script>
