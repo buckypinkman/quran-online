@@ -1,5 +1,10 @@
+import { addToLocal } from './../utils/index'
+
+export const strict = false
+
 export const state = () => ({
-  local_favorite_surah: []
+  local_favorite_surah: [],
+  showModal: false,
 })
 
 export const mutations = {
@@ -12,16 +17,18 @@ export const mutations = {
       ayat: surah.numberOfVerses,
       revelation: surah.revelation.id,
     });
+    addToLocal(state.local_favorite_surah, "surah")
+    this.commit('toggleModal')
   },
   deleteSurah(state, index) {
     state.local_favorite_surah.splice(index, 1)
-    this.commit('saveSurah')
+    addToLocal(state.local_favorite_surah, "surah")
   },
   getSurah(state, surah) {
     state.local_favorite_surah = surah
   },
-  saveSurah(state) {
-    const parsed = JSON.stringify(state.local_favorite_surah);
-    window.localStorage.setItem("surah", parsed);
-  }
+  toggleModal(state) {
+    state.showModal = true;
+    setTimeout(() => (state.showModal = false), 1800);
+  },
 }
