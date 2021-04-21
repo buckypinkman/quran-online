@@ -9,7 +9,7 @@
           src="../../assets/icons/star-filled.svg"
           class="w-6 cursor-pointer"
           alt="delete icon"
-          @click="deleteSurah(id)"
+          @click="deleteSurah(number)"
           v-if="findInFavorite(name)"
         />
         <img
@@ -58,8 +58,8 @@ export default {
     addSurah() {
       this.$emit("addedSurah");
     },
-    deleteSurah(id) {
-      this.$emit("surahDeleted", id);
+    deleteSurah(number) {
+      this.$store.commit('deleteSurah', number)
     },
     findInFavorite(surahName) {
       return this.$store.state.local_favorite_surah.find((surah) => surah.name == surahName);
