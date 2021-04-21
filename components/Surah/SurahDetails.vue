@@ -3,7 +3,7 @@
     <base-header-card>
       <div class="title sm:flex">
         <h1 class="font-semibold text-xl">
-          {{ details.name.transliteration.id }} -
+          {{ surahName }} -
           <span class="arabic font-normal"> {{ details.name.short }} </span>
         </h1>
         <h2 class="font-semibold text-lg ml-1 mb-2 md:mb-0">
@@ -68,7 +68,14 @@
               <source :src="res.audio.primary" />
             </audio>
           <button
-            @click="addAyah(res.number.inSurah, details.number)"
+            @click="addAyah({
+              surahName: surahName,
+              surahNumber: details.number,
+              number: res.number.inSurah,
+              audio: res.audio.primary,
+              arabText: res.text.arab,
+              translation: res.translation.id
+            })"
             class="ml-auto bookmark focus:outline-none"
           >
             <svg
@@ -152,7 +159,7 @@
       </div>
     </transition>
     <transition name="slide-fade"
-      ><success-modal v-if="showModal"
+      ><success-modal v-if="$store.state.showModal"
         >Berhasil menambahkan sebagai ayat terakhir dibaca</success-modal
       ></transition
     >
@@ -179,10 +186,13 @@ export default {
         return ayah.number.inSurah >= this.query;
       });
     },
+    surahName() {
+      return this.details.name.transliteration.id
+    }
   },
   head() {
     return {
-      title: `${this.details.name.transliteration.id} | Al-Quran Online`,
+      title: `${this.surahName} | Al-Quran Online`,
     };
   },
 };
