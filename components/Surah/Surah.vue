@@ -10,7 +10,7 @@
           class="w-6 cursor-pointer"
           alt="delete icon"
           @click="deleteSurah(number)"
-          v-if="findInFavorite(name)"
+          v-if="isFavorite(name)"
         />
         <img
           src="../../assets/icons/star.svg"
@@ -61,7 +61,7 @@ export default {
     deleteSurah(number) {
       this.$store.commit('deleteSurah', number)
     },
-    findInFavorite(surahName) {
+    isFavorite(surahName) {
       return this.$store.state.local_favorite_surah.find((surah) => surah.name == surahName);
     },
   },
