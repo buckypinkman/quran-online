@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bottom-nav text-center bg-indigo-400 text-white overflow-hidden w-full md:max-w-2xl md:mb-3 md:rounded-md py-2 px-5 dark:bg-gray-800 dark:text-gray-300 fixed bottom-0 left-0 right-0 mx-auto flex flex-row justify-around z-50"
+    class="bottom-nav text-center bg-indigo-400 text-white overflow-hidden w-full md:max-w-2xl md:mb-3 md:rounded-md py-2 px-5 dark:bg-gray-800 dark:text-gray-300 fixed bottom-0 left-0 right-0 mx-auto flex flex-row justify-around z-10"
   >
     <nuxt-link to="/" exact>
       <div class="nav-item cursor-pointer">

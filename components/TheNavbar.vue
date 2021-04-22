@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex w-full items-center justify-between top-0 dark:bg-gray-900 px-6 h-16 bg-white text-gray-700 border-b border-gray-200 dark:border-gray-700 z-10"
+    class="flex w-full items-center justify-between top-0 dark:bg-gray-900 px-6 h-16 bg-white text-gray-700 border-b border-gray-200 dark:border-gray-700 z-50"
   >
     <div class="flex items-center">
       <button class="mr-2" aria-label="Open Menu" @click="drawer">
