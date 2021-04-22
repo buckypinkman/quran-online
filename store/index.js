@@ -31,8 +31,8 @@ export const mutations = {
     state.local_favorite_surah = surah
   },
   toggleModal(state, title) {
-    state.showModal = true;
     state.modal_title = title
+    state.showModal = true;
     setTimeout(() => (state.showModal = false), 1800);
   },
 }
