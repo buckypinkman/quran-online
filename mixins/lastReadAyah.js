@@ -15,7 +15,7 @@ export default {
       }
       this.last_read_ayah.unshift(ayah);
       addToLocal(this.last_read_ayah, "ayah")
-      this.$store.commit('toggleModal');
+      this.$store.commit('toggleModal', 'Berhasil menambahkan ayat terakhir dibaca');
     },
   },
 }
